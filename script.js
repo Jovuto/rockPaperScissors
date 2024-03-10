@@ -30,21 +30,21 @@ function playSingleRound (playerSelection) {
     // compare the player choice with the computer choice using a conditional and store the result in a variable
     let Result;
     if (computerChoice == playerSelection) {
-        Result = "It's a tie";
+        Result = "tie";
     }
     else if ((computerChoice == "rock" && playerSelection == "paper") || 
     (computerChoice == "paper" && playerSelection == "scissors") ||
     (computerChoice == "scissors" && playerSelection == "rock")) {
-        Result = "You win! :)";
+        Result = "win";
     }
     else if ((computerChoice == "rock" && playerSelection == "scissors") ||
     (computerChoice == "paper" && playerSelection == "rock") ||
     (computerChoice == "scissors" && playerSelection == "paper")) {
-        Result = "You lose :(";
+        Result = "loss";
     }
     else {
-        Result = "Rock, paper, scissors only! No spock, or any other weird stuff!! Or something went wrong idk";
-        console.error(Result);
+        Result = "error";
+        console.error("Rock, paper, scissors only! No spock, or any other weird stuff!! Or something went wrong idk");
     }
     console.log(Result);
     // return the result
@@ -57,6 +57,7 @@ function playGame() {
         // prompt the user for an input and store it as a variable
         let playerSelection = prompt("Rock, paper, or scissors?");
         // use the variable to call the playSingleRound function
+        playSingleRound(playerSelection);
         // create a win counter variable that increases by one every time the player wins a round
     }
     // using the win counter, decide if the player has won using a conditional
