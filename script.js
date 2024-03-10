@@ -20,7 +20,7 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function playRockPaperScissors (playerSelection) {
+function playSingleRound (playerSelection) {
     // get the computer's choice and store this as a variable
     let computerChoice = getComputerChoice();
     console.log(computerChoice);
@@ -49,4 +49,16 @@ function playRockPaperScissors (playerSelection) {
     console.log(Result);
     // return the result
     return Result;
+}
+
+function playGame() {
+    // create a for loop for 5
+    for (i = 1; i <= 5; i++) {
+        // prompt the user for an input and store it as a variable
+        let playerSelection = prompt("Rock, paper, or scissors?");
+        // use the variable to call the playSingleRound function
+        // create a win counter variable that increases by one every time the player wins a round
+    }
+    // using the win counter, decide if the player has won using a conditional
+    // return the result
 }
