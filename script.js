@@ -1,3 +1,5 @@
+playGame();
+
 function getComputerChoice() {
     // create a random number 1 to 3 and store the variable
     let choiceNumber = Math.ceil((Math.random()) * 3);
@@ -53,12 +55,16 @@ function playSingleRound (playerSelection) {
 
 function playGame() {
     // create a for loop for 5
-    for (i = 1; i <= 5; i++) {
+    for (i = 1, winCounter = 0; i <= 5; i++) {
         // prompt the user for an input and store it as a variable
         let playerSelection = prompt("Rock, paper, or scissors?");
         // use the variable to call the playSingleRound function
-        playSingleRound(playerSelection);
+        let roundResult = playSingleRound(playerSelection);
         // create a win counter variable that increases by one every time the player wins a round
+        if (roundResult == "win") {
+            winCounter = ++winCounter;
+        }
+        console.log(winCounter);
     }
     // using the win counter, decide if the player has won using a conditional
     // return the result
