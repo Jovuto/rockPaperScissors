@@ -76,4 +76,5 @@ function playGame() {
     }
     console.log(Result);
     // return the result
+    return Result;
 }
