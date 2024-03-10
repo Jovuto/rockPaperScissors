@@ -15,7 +15,9 @@ function getComputerChoice() {
     }
     else {
         computerChoice = "Something has gone very wrong!";
+        console.error(computerChoice);
     }
     console.log(computerChoice)
     // return the output
+    return computerChoice;
 }
