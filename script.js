@@ -28,5 +28,24 @@ function playRockPaperScissors (playerSelection) {
     playerSelection = playerSelection.toLowerCase();
     console.log(playerSelection);
     // compare the player choice with the computer choice using a conditional and store the result in a variable
+    let Result;
+    if (computerChoice == playerSelection) {
+        Result = "It's a tie";
+    }
+    else if ((computerChoice == "rock" && playerSelection == "paper") || 
+    (computerChoice == "paper" && playerSelection == "scissors") ||
+    (computerChoice == "scissors" && playerSelection == "rock")) {
+        Result = "You win! :)";
+    }
+    else if ((computerChoice == "rock" && playerSelection == "scissors") ||
+    (computerChoice == "paper" && playerSelection == "rock") ||
+    (computerChoice == "scissors" && playerSelection == "paper")) {
+        Result = "You lose :(";
+    }
+    else {
+        Result = "Rock, paper, scissors only! No spock, or any other weird stuff!! Or something went wrong idk";
+        console.error(Result);
+    }
+    console.log(Result);
     // return the result
 }
