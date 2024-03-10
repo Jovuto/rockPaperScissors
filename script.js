@@ -67,5 +67,13 @@ function playGame() {
         console.log(winCounter);
     }
     // using the win counter, decide if the player has won using a conditional
+    let Result;
+    if (winCounter >= 3){
+        Result = "You win! :)"
+    }
+    else {
+        Result = "You lose :("
+    }
+    console.log(Result);
     // return the result
 }
