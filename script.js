@@ -23,12 +23,12 @@ function getComputerChoice() {
 }
 
 function playSingleRound (playerSelection) {
-    // get the computer's choice and store this as a variable
-    let computerChoice = getComputerChoice();
-    console.log(computerChoice);
     // convert the player choice to lowercase
     playerSelection = playerSelection.toLowerCase();
-    console.log(playerSelection);
+    console.log("The player selected: " + playerSelection);
+    // get the computer's choice and store this as a variable
+    let computerChoice = getComputerChoice();
+    console.log("The CPU selected: " + computerChoice);
     // compare the player choice with the computer choice using a conditional and store the result in a variable
     let Result;
     if (computerChoice == playerSelection) {
@@ -56,6 +56,7 @@ function playSingleRound (playerSelection) {
 function playGame() {
     // create a for loop for 5
     for (i = 1, winCounter = 0; i <= 5; i++) {
+        console.group("Round: " + i);
         // prompt the user for an input and store it as a variable
         let playerSelection = prompt("Rock, paper, or scissors?");
         // use the variable to call the playSingleRound function
@@ -64,7 +65,8 @@ function playGame() {
         if (roundResult == "win") {
             winCounter = ++winCounter;
         }
-        console.log(winCounter);
+        console.log("Rounds won: " + winCounter);
+        console.groupEnd();
     }
     // using the win counter, decide if the player has won using a conditional
     let Result;
