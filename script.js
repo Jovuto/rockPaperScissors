@@ -48,4 +48,5 @@ function playRockPaperScissors (playerSelection) {
     }
     console.log(Result);
     // return the result
+    return Result;
 }
