@@ -25,6 +25,8 @@ function playRockPaperScissors (playerSelection) {
     let computerChoice = getComputerChoice();
     console.log(computerChoice);
     // convert the player choice to lowercase
+    playerSelection = playerSelection.toLowerCase();
+    console.log(playerSelection);
     // compare the player choice with the computer choice using a conditional and store the result in a variable
     // return the result
 }
