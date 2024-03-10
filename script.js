@@ -55,23 +55,30 @@ function playSingleRound (playerSelection) {
 
 function playGame() {
     // create a for loop for 5
-    for (i = 1, winCounter = 0; i <= 5; i++) {
+    for (i = 1, winCounter = 0, loseCounter = 0; i <= 5; i++) {
         console.group("Round: " + i);
         // prompt the user for an input and store it as a variable
         let playerSelection = prompt("Rock, paper, or scissors?");
         // use the variable to call the playSingleRound function
         let roundResult = playSingleRound(playerSelection);
-        // create a win counter variable that increases by one every time the player wins a round
+        // create a win and tie counter variable that increases by one every time the player wins or ties a round
         if (roundResult == "win") {
             winCounter = ++winCounter;
         }
+        else if (roundResult == "loss") {
+            loseCounter = ++loseCounter;
+        }
         console.log("Rounds won: " + winCounter);
+        console.log("Rounds lost: " + loseCounter);
         console.groupEnd();
     }
     // using the win counter, decide if the player has won using a conditional
     let Result;
     if (winCounter >= 3){
         Result = "You win! :)"
+    }
+    else if (winCounter == loseCounter) {
+        Result = "DRAW!!";
     }
     else {
         Result = "You lose :("
