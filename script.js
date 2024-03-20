@@ -1,4 +1,12 @@
-playGame();
+//playGame();
+
+const ROCK_BUTTON = document.querySelector(".rockButton");
+const PAPER_BUTTON = document.querySelector(".paperButton");
+const SCISSORS_BUTTON = document.querySelector(".scissorsButton");
+
+ROCK_BUTTON.addEventListener("click", () => playSingleRound("rock"));
+PAPER_BUTTON.addEventListener("click", () => playSingleRound("paper"));
+SCISSORS_BUTTON.addEventListener("click", () => playSingleRound("scissors"));
 
 function getComputerChoice() {
     // create a random number 1 to 3 and store the variable
@@ -53,7 +61,7 @@ function playSingleRound (playerSelection) {
     return Result;
 }
 
-function playGame() {
+/* function playGame() {
     // create a for loop for 5
     for (i = 1, winCounter = 0, loseCounter = 0; i <= 5; i++) {
         console.group("Round: " + i);
@@ -86,4 +94,4 @@ function playGame() {
     console.log(Result);
     // return the result
     return Result;
-}
+} */
