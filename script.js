@@ -5,6 +5,13 @@ const PAPER_BUTTON = document.querySelector(".paperButton");
 const SCISSORS_BUTTON = document.querySelector(".scissorsButton");
 const RESULT_AREA = document.querySelector(".results");
 
+const SCORE = document.querySelector(".score > p");
+
+let playerWinCounter = 0;
+let cpuWinCounter = 0;
+
+SCORE.textContent = "Player: " + playerWinCounter + " CPU: " + cpuWinCounter;
+
 ROCK_BUTTON.addEventListener("click", () => playSingleRound("rock"));
 PAPER_BUTTON.addEventListener("click", () => playSingleRound("paper"));
 SCISSORS_BUTTON.addEventListener("click", () => playSingleRound("scissors"));
@@ -56,11 +63,15 @@ function playSingleRound (playerSelection) {
     (computerChoice == "paper" && playerSelection == "scissors") ||
     (computerChoice == "scissors" && playerSelection == "rock")) {
         Result = "win";
+        playerWinCounter++;
+        SCORE.textContent = "Player: " + playerWinCounter + " CPU: " + cpuWinCounter;
     }
     else if ((computerChoice == "rock" && playerSelection == "scissors") ||
     (computerChoice == "paper" && playerSelection == "rock") ||
     (computerChoice == "scissors" && playerSelection == "paper")) {
         Result = "loss";
+        cpuWinCounter++;
+        SCORE.textContent = "Player: " + playerWinCounter + " CPU: " + cpuWinCounter;
     }
     else {
         Result = "error";
@@ -70,6 +81,13 @@ function playSingleRound (playerSelection) {
     const RESULT = document.createElement("p");
     RESULT_AREA.appendChild(RESULT);
     RESULT.textContent = Result;
+
+    if (playerWinCounter >= 5) {
+        SCORE.textContent = "Player: " + playerWinCounter + " CPU: " + cpuWinCounter + " Player wins!";
+    }
+    else if (cpuWinCounter >= 5) {
+        SCORE.textContent = "Player: " + playerWinCounter + " CPU: " + cpuWinCounter + " CPU wins :(";
+    }
     // return the result
     return Result;
 }
