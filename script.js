@@ -3,6 +3,7 @@
 const ROCK_BUTTON = document.querySelector(".rockButton");
 const PAPER_BUTTON = document.querySelector(".paperButton");
 const SCISSORS_BUTTON = document.querySelector(".scissorsButton");
+const RESULT_AREA = document.querySelector(".results");
 
 ROCK_BUTTON.addEventListener("click", () => playSingleRound("rock"));
 PAPER_BUTTON.addEventListener("click", () => playSingleRound("paper"));
@@ -31,12 +32,21 @@ function getComputerChoice() {
 }
 
 function playSingleRound (playerSelection) {
+
     // convert the player choice to lowercase
     playerSelection = playerSelection.toLowerCase();
     console.log("The player selected: " + playerSelection);
+    const PLAYER_OUTPUT = document.createElement("p");
+    RESULT_AREA.appendChild(PLAYER_OUTPUT);
+    PLAYER_OUTPUT.textContent = "The player selected: " + playerSelection;
+
     // get the computer's choice and store this as a variable
     let computerChoice = getComputerChoice();
     console.log("The CPU selected: " + computerChoice);
+    const CPU_OUTPUT = document.createElement("p");
+    RESULT_AREA.appendChild(CPU_OUTPUT);
+    CPU_OUTPUT.textContent = "The CPU selected: " + computerChoice;
+
     // compare the player choice with the computer choice using a conditional and store the result in a variable
     let Result;
     if (computerChoice == playerSelection) {
@@ -57,6 +67,9 @@ function playSingleRound (playerSelection) {
         console.error("Rock, paper, scissors only! No spock, or any other weird stuff!! Or something went wrong idk");
     }
     console.log(Result);
+    const RESULT = document.createElement("p");
+    RESULT_AREA.appendChild(RESULT);
+    RESULT.textContent = Result;
     // return the result
     return Result;
 }
