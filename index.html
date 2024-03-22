@@ -5,13 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
+    <div class="heading">
+
+        <h1>Fifi's Game of Rock Paper Scissors</h1>
+        <p>Can you beat the wise girl at her own game of rock, paper, scissors?</p>
+
+    </div>
+
     <div class="content">
 
-        <button class="rockButton">Rock</button>
-        <button class="paperButton">Paper</button>
-        <button class="scissorsButton">Scissors</button>
+        <div class="gameArea">
+
+            <img src="images/fifi.jpeg">
+
+            <div class="buttons">
+                <button class="rockButton">Rock</button>
+                <button class="paperButton">Paper</button>
+                <button class="scissorsButton">Scissors</button>
+            </div>
+        </div>
 
         <div class="score">
 
@@ -19,7 +35,14 @@
 
         </div>
 
-        <div class="results"></div>
+        <div class="results">
+
+            <p class="playerOutput"></p>
+            <p class="cpuOutput"></p>
+            <p class="winOrLose"></p>
+
+
+        </div>
 
     </div>
 </body>

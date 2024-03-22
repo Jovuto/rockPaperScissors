@@ -4,13 +4,20 @@ const ROCK_BUTTON = document.querySelector(".rockButton");
 const PAPER_BUTTON = document.querySelector(".paperButton");
 const SCISSORS_BUTTON = document.querySelector(".scissorsButton");
 const RESULT_AREA = document.querySelector(".results");
+const PLAYER_OUTPUT = document.querySelector(".playerOutput");
+const CPU_OUTPUT = document.querySelector(".cpuOutput");
+const WIN_OR_LOSE = document.querySelector(".winOrLose");
+const BUTTON_AREA = document.querySelector(".buttons");
+const RESTART_BUTTON = document.createElement("button");
+
+let isGameOver = false;
 
 const SCORE = document.querySelector(".score > p");
 
 let playerWinCounter = 0;
 let cpuWinCounter = 0;
 
-SCORE.textContent = "Player: " + playerWinCounter + " CPU: " + cpuWinCounter;
+SCORE.textContent = "You: " + playerWinCounter + " Fifi: " + cpuWinCounter;
 
 ROCK_BUTTON.addEventListener("click", () => playSingleRound("rock"));
 PAPER_BUTTON.addEventListener("click", () => playSingleRound("paper"));
@@ -40,19 +47,17 @@ function getComputerChoice() {
 
 function playSingleRound (playerSelection) {
 
+    if (isGameOver == false){
+
     // convert the player choice to lowercase
     playerSelection = playerSelection.toLowerCase();
     console.log("The player selected: " + playerSelection);
-    const PLAYER_OUTPUT = document.createElement("p");
-    RESULT_AREA.appendChild(PLAYER_OUTPUT);
-    PLAYER_OUTPUT.textContent = "The player selected: " + playerSelection;
+    PLAYER_OUTPUT.textContent = "You selected: " + playerSelection;
 
     // get the computer's choice and store this as a variable
     let computerChoice = getComputerChoice();
     console.log("The CPU selected: " + computerChoice);
-    const CPU_OUTPUT = document.createElement("p");
-    RESULT_AREA.appendChild(CPU_OUTPUT);
-    CPU_OUTPUT.textContent = "The CPU selected: " + computerChoice;
+    CPU_OUTPUT.textContent = "Fifi selected: " + computerChoice;
 
     // compare the player choice with the computer choice using a conditional and store the result in a variable
     let Result;
@@ -64,32 +69,60 @@ function playSingleRound (playerSelection) {
     (computerChoice == "scissors" && playerSelection == "rock")) {
         Result = "win";
         playerWinCounter++;
-        SCORE.textContent = "Player: " + playerWinCounter + " CPU: " + cpuWinCounter;
+        SCORE.textContent = "You: " + playerWinCounter + " Fifi: " + cpuWinCounter;
     }
     else if ((computerChoice == "rock" && playerSelection == "scissors") ||
     (computerChoice == "paper" && playerSelection == "rock") ||
     (computerChoice == "scissors" && playerSelection == "paper")) {
         Result = "loss";
         cpuWinCounter++;
-        SCORE.textContent = "Player: " + playerWinCounter + " CPU: " + cpuWinCounter;
+        SCORE.textContent = "You: " + playerWinCounter + " Fifi: " + cpuWinCounter;
     }
     else {
         Result = "error";
         console.error("Rock, paper, scissors only! No spock, or any other weird stuff!! Or something went wrong idk");
     }
     console.log(Result);
-    const RESULT = document.createElement("p");
-    RESULT_AREA.appendChild(RESULT);
-    RESULT.textContent = Result;
+    switch (Result){
+        case "tie":
+            WIN_OR_LOSE.textContent = "We tied! We must be on the same wavelength";
+            break;
+        case "win":
+            WIN_OR_LOSE.textContent = "You won! It's not easy making these shapes with paws :(";
+            break;
+        case "loss":
+            WIN_OR_LOSE.textContent = "You lost and I won! WOOF";
+    }
+}
 
-    if (playerWinCounter >= 5) {
-        SCORE.textContent = "Player: " + playerWinCounter + " CPU: " + cpuWinCounter + " Player wins!";
+    if (isGameOver == false){
+
+        if (playerWinCounter >= 5) {
+            SCORE.textContent = "You: " + playerWinCounter + " Fifi: " + cpuWinCounter + " You win!";
+            isGameOver = true;
+            BUTTON_AREA.appendChild(RESTART_BUTTON);
+            RESTART_BUTTON.textContent = "Restart";
+            RESTART_BUTTON.addEventListener("click", () => restartGame());
+        }
+        else if (cpuWinCounter >= 5) {
+            SCORE.textContent = "You: " + playerWinCounter + " Fifi: " + cpuWinCounter + " Fifi wins!";
+            isGameOver = true;
+            BUTTON_AREA.appendChild(RESTART_BUTTON);
+            RESTART_BUTTON.textContent = "Restart";
+            RESTART_BUTTON.addEventListener("click", () => restartGame());
+        }
     }
-    else if (cpuWinCounter >= 5) {
-        SCORE.textContent = "Player: " + playerWinCounter + " CPU: " + cpuWinCounter + " CPU wins :(";
-    }
-    // return the result
-    return Result;
+}
+
+function restartGame(){
+    playerWinCounter = 0;
+    cpuWinCounter = 0;
+    SCORE.textContent = "You: " + playerWinCounter + " Fifi: " + cpuWinCounter;
+    isGameOver = false;
+    PLAYER_OUTPUT.textContent = "";
+    CPU_OUTPUT.textContent = "";
+    WIN_OR_LOSE.textContent = "";
+    BUTTON_AREA.removeChild(RESTART_BUTTON);
 }
 
 /* function playGame() {
